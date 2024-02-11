@@ -4,17 +4,30 @@ const inputElement = document.querySelector("#controls input");
 const divElement = document.querySelector("#boxes");
 
 
+// btnCreate.addEventListener("click", () => {
+//   if (Number(inputElement.value) >= 1 && Number(inputElement.value) <= 100) {
+//     createBoxes(Number(inputElement.value))
+//       }     else {
+//         alert(`enter a value between 1 and 100`)
+//       }
+//       }
+// )
+
+
 btnCreate.addEventListener("click", () => {
-  if (Number(inputElement.value) >= 1 && Number(inputElement.value) <= 100) {
-    createBoxes(Number(inputElement.value))
-      }     else {
-        alert(`enter a value between 1 and 100`)
-      }
-      }
+  if (Number(inputElement.value) > Number(inputElement.max) ||
+    Number(inputElement.value) < Number(inputElement.min)) {
+    alert(`enter a value between 1 and 100`)
+  }
+   else { 
+  createBoxes(inputElement.value)
+    }
+  }
 )
+
   
 btnDestroy.addEventListener('click', () => {
-	destroyBoxes.call()
+	destroyBoxes()
 })
 
 
@@ -26,6 +39,7 @@ function getRandomHexColor() {
 
 
 function createBoxes(amount) {
+  divElement.innerHTML = "";
   let size = 30;
   for (let index = 0; index < amount; index++) {
     const color = getRandomHexColor();
